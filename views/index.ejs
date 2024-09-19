@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -27,7 +28,11 @@
                         <h1 class="text-white lg:text-3xl md:text-xl tracking-tighter"><%= val %></h1>
                         <div class="flex w-full justify-between items-center mt-3">
                         <a class="text-blue-500 inline-block" href="/file/<%= val %>">Read More.</a>
-                        <a class="text-zinc-400" href="/update/<%= val %>">edit</a>
+                        <a class="text-zinc-400" href="/update/<%= val %>"><i class='bx bx-edit'></i></a>
+                        <form action="/delete/<%= val %>" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="text-red-500"><i class='bx bx-trash'></i></button>
+                        </form>
                         </div>
                     </div>
                     <% }) %>

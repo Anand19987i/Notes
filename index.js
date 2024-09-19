@@ -15,6 +15,16 @@ app.get("/", (req, res) => {
         res.render("index", { files: files });
     })
 })
+app.post("/delete/:filename", (req, res) => {
+    fs.unlink(`./files/${req.params.filename}`, (err) => {
+        if (err) {
+            console.error("Error deleting file:", err);
+            return res.status(500).send("Error deleting file");
+        }
+        res.redirect("/");
+    });
+});
+
 
 app.get("/file/:filename", (req, res) => {
     fs.readFile(`./files/${req.params.filename}`, "utf-8", (err, filedata) => {
